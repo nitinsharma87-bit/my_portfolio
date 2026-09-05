@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NITIN SHARMA — Front-End Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14161c;
+    --paper:#f3f0e8;
+    --paper-dim:#eae5d9;
+    --brass:#b8834a;
+    --slate:#48607e;
+    --line:#d9d2c1;
+    --ink-soft:#4d4f57;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  header{
+    position:sticky;
+    top:0;
+    background:rgba(243,240,232,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    z-index:50;
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:1080px;
+    margin:0 auto;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    font-weight:500;
+  }
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:28px;
+    margin:0;
+    padding:0;
+    font-size:0.92rem;
+  }
+  nav a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:color .15s, border-color .15s;
+  }
+  nav a:hover, nav a:focus-visible{
+    color:var(--ink);
+    border-color:var(--brass);
+  }
+
+  #home{
+    padding:90px 0 70px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:48px;
+    align-items:end;
+  }
+  .kicker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.82rem;
+    color:var(--slate);
+    margin-bottom:18px;
+  }
+  .hero-title{
+    font-size:clamp(2.4rem, 5.2vw, 4rem);
+    line-height:1.04;
+  }
+  .hero-title .accent{
+    font-style:italic;
+    color:var(--brass);
+  }
+  .hero-sub{
+    margin-top:22px;
+    max-width:46ch;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+  }
+  .hero-side{
+    border-left:1px solid var(--line);
+    padding-left:28px;
+  }
+  .hero-side p{
+    margin:0 0 6px;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+  }
+  .hero-side strong{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+  .hero-side .field{margin-bottom:16px;}
+  .btn-row{
+    margin-top:20px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:11px 20px;
+    font-size:0.92rem;
+    text-decoration:none;
+    border:1px solid var(--ink);
+    color:var(--ink);
+  }
+  .btn.solid{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .btn.solid:hover{background:var(--brass); border-color:var(--brass);}
+  .btn:not(.solid):hover{border-color:var(--brass); color:var(--brass);}
+
+  section{padding:70px 0;}
+  section:not(:last-of-type){border-bottom:1px solid var(--line);}
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:38px;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{font-size:1.9rem;}
+  .section-num{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--slate);
+    font-size:0.85rem;
+  }
+
+  .about-grid{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  .portrait{
+    width:220px;
+    height:220px;
+    background:var(--ink);
+    color:var(--paper);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:3.2rem;
+    border:1px solid var(--ink);
+  }
+  .about-text p{margin:0 0 16px; max-width:62ch; color:var(--ink-soft);}
+  .about-text p:last-child{margin-bottom:0;}
+
+  .skills-list{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:0;
+    border-top:1px solid var(--line);
+  }
+  .skill-row{
+    display:flex;
+    justify-content:space-between;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    padding-right:24px;
+  }
+  .skill-row:nth-child(odd){padding-right:24px; border-right:1px solid var(--line);}
+  .skill-row:nth-child(even){padding-left:24px;}
+  .skill-name{font-family:'Fraunces', serif; font-size:1.05rem;}
+  .skill-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--slate);
+    align-self:center;
+  }
+
+  .project{
+    display:grid;
+    grid-template-columns:80px 1fr auto;
+    gap:24px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .project:first-of-type{border-top:1px solid var(--line);}
+  .project-index{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--slate);
+    font-size:0.85rem;
+    padding-top:4px;
+  }
+  .project h3{font-size:1.35rem; margin-bottom:8px;}
+  .project p{margin:0 0 12px; color:var(--ink-soft); max-width:56ch;}
+  .tech-tags{display:flex; gap:8px; flex-wrap:wrap;}
+  .tech-tags span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--slate);
+    border:1px solid var(--line);
+    padding:3px 9px;
+  }
+  .project-link{
+    align-self:center;
+    font-size:0.88rem;
+    text-decoration:none;
+    color:var(--ink);
+    border-bottom:1px solid var(--brass);
+    padding-bottom:2px;
+    white-space:nowrap;
+  }
+  .project-link:hover{color:var(--brass);}
+
+  .resume-box{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    padding:30px 34px;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .resume-box p{margin:6px 0 0; color:var(--ink-soft); max-width:46ch;}
+
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  .contact-list{list-style:none; margin:0; padding:0;}
+  .contact-list li{
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+  }
+  .contact-list li:first-child{border-top:1px solid var(--line);}
+  .contact-label{font-family:'JetBrains Mono', monospace; font-size:0.8rem; color:var(--slate);}
+  .contact-value a{text-decoration:none;}
+  .contact-value a:hover{color:var(--brass);}
+  .availability p{color:var(--ink-soft); max-width:44ch;}
+
+  footer{
+    padding:30px 0 40px;
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+  .footer-links{display:flex; gap:20px; list-style:none; padding:0; margin:0;}
+  .footer-links a{text-decoration:none; color:var(--ink-soft);}
+  .footer-links a:hover{color:var(--brass);}
+
+  @media (max-width: 760px){
+    .wrap{padding:0 20px;}
+    .nav-row{padding:16px 20px;}
+    nav ul{gap:16px; font-size:0.85rem;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-side{border-left:none; padding-left:0; border-top:1px solid var(--line); padding-top:20px;}
+    .about-grid{grid-template-columns:1fr;}
+    .portrait{width:140px; height:140px; font-size:2.2rem;}
+    .skills-list{grid-template-columns:1fr;}
+    .skill-row:nth-child(odd){border-right:none; padding-right:0;}
+    .skill-row:nth-child(even){padding-left:0;}
+    .project{grid-template-columns:40px 1fr; }
+    .project-link{grid-column:2; }
+    .contact-grid{grid-template-columns:1fr;}
+    .resume-box{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <div class="brand">NITIN SHARMA</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">// front-end developer</div>
+      <h1 class="hero-title">Building interfaces that feel <span class="accent">obvious</span> in hindsight.</h1>
+      <p class="hero-sub">I'm NITIN SHARMA, a front-end developer who turns rough ideas into clean, accessible, fast-loading web pages — one semantic tag at a time.</p>
+      <div class="btn-row">
+        <a class="btn solid" href="#projects">View projects</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="field">
+        <strong>Focus</strong>
+        <p>HTML · CSS · Accessible UI</p>
+      </div>
+      <div class="field">
+        <strong>Status</strong>
+        <p>Open to internships &amp; junior roles</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>About</h2>
+      <span class="section-num">01</span>
+    </div>
+    <div class="about-grid">
+      <div class="portrait">NS</div>
+      <div class="about-text">
+        <p>I started out hand-coding tables in a text editor and never quite lost that love for clean markup. These days I build layouts with CSS Grid and Flexbox, but the instinct is the same: structure first, style second.</p>
+        <p>Over the past year I've completed a front-end development track focused on semantic HTML, responsive CSS, and the fundamentals of accessible design. I care about pages that load quickly, read well on any screen, and make sense to someone using a keyboard or a screen reader.</p>
+        <p>Outside of code, I sketch layout ideas on paper before I open a text editor — it keeps me honest about hierarchy before I get lost in the details.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <span class="section-num">02</span>
+    </div>
+    <div class="skills-list">
+      <div class="skill-row"><span class="skill-name">HTML5</span><span class="skill-tag">semantic markup</span></div>
+      <div class="skill-row"><span class="skill-name">CSS3</span><span class="skill-tag">grid · flexbox</span></div>
+      <div class="skill-row"><span class="skill-name">Responsive design</span><span class="skill-tag">mobile-first</span></div>
+      <div class="skill-row"><span class="skill-name">Accessibility</span><span class="skill-tag">WCAG basics</span></div>
+      <div class="skill-row"><span class="skill-name">Git &amp; GitHub</span><span class="skill-tag">version control</span></div>
+      <div class="skill-row"><span class="skill-name">JavaScript</span><span class="skill-tag">ES6 fundamentals</span></div>
+      <div class="skill-row"><span class="skill-name">Figma</span><span class="skill-tag">design-to-code</span></div>
+      <div class="skill-row"><span class="skill-name">Sass</span><span class="skill-tag">preprocessing</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <span class="section-num">03</span>
+    </div>
+
+    <div class="project">
+      <div class="project-index">01</div>
+      <div>
+        <h3>Landing Page — Studio Nine</h3>
+        <p>A single-page site for a fictional design studio, built to practice layout rhythm, section pacing, and a restrained color system.</p>
+        <div class="tech-tags"><span>HTML</span><span>CSS Grid</span><span>Flexbox</span></div>
+      </div>
+      <a class="project-link" href="#">View demo →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-index">02</div>
+      <div>
+        <h3>Recipe Calculator</h3>
+        <p>A small JavaScript tool that scales ingredient quantities up or down based on desired servings, with live-updating results.</p>
+        <div class="tech-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+      </div>
+      <a class="project-link" href="#">View demo →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-index">03</div>
+      <div>
+        <h3>This Portfolio</h3>
+        <p>The site you're reading right now — built from scratch to practice typography, whitespace, and a cohesive personal visual identity.</p>
+        <div class="tech-tags"><span>HTML</span><span>CSS</span></div>
+      </div>
+      <a class="project-link" href="#">Source →</a>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Resume</h2>
+      <span class="section-num">04</span>
+    </div>
+    <div class="resume-box">
+      <div>
+        <strong style="font-family:'Fraunces',serif; font-size:1.1rem;">Nitin Sharma — Front-End Developer</strong>
+        <p>One page, PDF format. Covers coursework, projects, and core skills.</p>
+      </div>
+      <a class="btn solid" href="assets/Nitin_Sharma_Resume.pdf" download>Download PDF</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="section-head">
+        <h2>Contact</h2>
+        <span class="section-num">05</span>
+      </div>
+      <ul class="contact-list">
+        <li><span class="contact-label">EMAIL</span><span class="contact-value"><a href="mailto:nitinsharmabro8126@gmail.com">nitinsharmabro8126@gmail.com</a></span></li>
+        <li><span class="contact-label">PHONE</span><span class="contact-value"><a href="tel:+918755754739">+91 8755754739</a></span></li>
+        <li><span class="contact-label">GITHUB</span><span class="contact-value"><a href="https://github.com/Nitinsharma87-bit" target="_blank" rel="noopener">github.com/Nitinsharma87-bit</a></span></li>
+        <li><span class="contact-label">LINKEDIN</span><span class="contact-value"><a href="https://linkedin.com/in/nitin-sharma" target="_blank" rel="noopener">linkedin.com/in/nitin-sharma</a></span></li>
+      </ul>
+    </div>
+    <div class="availability">
+      <h3 style="font-size:1.1rem; margin-bottom:10px;">Let's work together</h3>
+      <p>I'm currently looking for internship and junior front-end opportunities. If you have a project or role in mind, my inbox is the fastest way to reach me — I usually reply within a day or two.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Nitin. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="#home">Back to top</a></li>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Sitemap</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
